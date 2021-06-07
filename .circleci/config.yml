@@ -5,7 +5,13 @@ jobs:
    -image: cimg/node:14.10.1
    steps:
     - checkout
+    - restore_cache:
+          key: v1-dependencies-{{checksum "pakcage.jason"}}
     - run:
         command: npm install
+        - save_cache:
+            key: vq-depdencies-{{checkusm "package.jasone"}}
+            paths:
+               -node_modules
         -run:
             command: npm test
